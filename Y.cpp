@@ -1,37 +1,26 @@
 #include <stdio.h>
 #include <string.h>
 
-void reverseSubstring(char* string, int start, int end) {
-    while (start < end) {
-        char temp = string[start];
-        string[start] = string[end];
-        string[end] = temp;
-        start++;
-        end--;
-    }
-}
-
 int main() {
-    int t, n, a, b;
-    char string[1001];
-
+    int t, L, R, total;
+    char num[1001], num2[1001];
     scanf("%d", &t);
-    for (int i = 1; i <= t; i++) {
-        scanf("%d %s", &n, string);
+    getchar();
+    for(int i = 1; i <= t; i++){
+        scanf("%d %s", &total, num);
         getchar();
         
-        int len = strlen(string); 
 
-        for (int j = 1; j <= n; j++) {
-            scanf("%d %d", &a, &b);
-            getchar();
-            if (a >= 0 && a < len && b >= 0 && b < len && a < b) {
-                reverseSubstring(string, a - 1, b - 1);
+        for(int j = 0; j < total; j++){
+            scanf("%d %d", &L, &R);
+            strcpy(num2, num);
+
+            for(int k = 0; k < R - L + 1; k++){
+                num2[L - 1 + k] = num[R - k - 1];
             }
+            strcpy(num, num2);
         }
-        printf("Case #%d: %s\n", i, string);
+        printf("Case #%d: %s\n", i, num);
     }
-
     return 0;
 }
-
